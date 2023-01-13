@@ -16,6 +16,6 @@ public class ScoreManager : MonoBehaviour
     }
     private void UpScore(int score)
     {
-        Debug.Log("Score vient de changer" + score);
+        scoreText.text = "Score :" + score.ToString();
     }
 }

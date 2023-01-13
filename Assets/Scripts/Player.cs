@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,7 +11,6 @@ public class Player : MonoBehaviour
     public Vector3 jump;
     public float jumpForce = 2.0f;
     public bool isGrounded;
-    [SerializeField] private TMP_Text _scoreText;
 
 
 
@@ -20,7 +18,6 @@ public class Player : MonoBehaviour
     {
         //init
         _rigidbody = GetComponent<Rigidbody>();
-        _scoreText.text = "Score: " + ScoreValue;
         jump = new Vector3(0.0f, 2.0f, 0.0f);
 
     }
@@ -35,35 +32,19 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Target"))
         {
-
-            Score();
             Destroy(collision.gameObject);
+            Score();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Target_trigger"))
-        {
-            Score();
-            Destroy(other.gameObject);
-        }
-    }
 
     private void Score()
     {
         ScoreValue++;
-        showScore(ScoreValue);
-
-
         //j'invoque OnScoreUpdate
         OnScoreUpdate?.Invoke(ScoreValue);
     }
 
-    private void showScore(int scoreValue)
-    {
-        _scoreText.text = "Score: " + scoreValue;
-    }
 
     void Update()
     {
