@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //public delegate void OnScoreMessage(int value);
-    //public static event OnScoreMessage OnScoreUpdate;
+    public delegate void OnScoreMessage(int value);
+    public static event OnScoreMessage OnScoreUpdate;
 
 
     private Rigidbody _rigidbody;
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 
 
         //j'invoque OnScoreUpdate
-        // OnScoreUpdate?.Invoke(ScoreValue);
+        OnScoreUpdate?.Invoke(ScoreValue);
     }
 
     private void showScore(int scoreValue)
